@@ -1,0 +1,30 @@
+extends layout
+block head
+block content
+  #header
+    #header-logo
+      img(src='img/Alstom.png')
+    #header-headline
+      | Validator Engine - User Management
+  .main
+    .container
+      if (!user)
+        form
+          span
+            a(href="/login")
+              button.btn.btn-default(type='button') Login
+          span
+            a(href="/register")
+              button.btn.btn-primary(type="button") Register
+      if (user)
+        p.lead You are currently logged in as #{user.username}.
+        p
+          form
+            span#spanLogout
+              a(href="/logout")
+                button.btn.btn-default(type='button') Logout
+            span#spanDelete
+              button#deleteAccount.btn(type="button") Delete Account
+        script(type='text/javascript').
+          var user_data =!{JSON.stringify(user)}
+block scripts
